@@ -11,8 +11,9 @@ class ChatWindow extends Component {
   }
 
   componentDidMount() {
-    const socket = new WebSocket(`ws://${window.location.hostname}:8080/user`);
+    const socket = new WebSocket(`ws://${window.location.hostname}:8080/users`);
     socket.onopen = () => console.log('connected');
+    socket.onmessage = (message) => console.log(JSON.parse(message.data));
   }
 
   handleData(data) {
