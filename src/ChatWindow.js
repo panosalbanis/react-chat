@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
-import './ChatWindow.css';
+import React, { Component } from "react";
+import "./ChatWindow.css";
 
 class ChatWindow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      me: 'panos',
+      me: "panos",
       users: []
     };
   }
 
   componentDidMount() {
     const socket = new WebSocket(`ws://${window.location.hostname}:8080/users`);
-    socket.onopen = () => console.log('connected');
-    socket.onmessage = (message) => console.log(JSON.parse(message.data));
+    socket.onopen = () => console.log("connected");
+    socket.onmessage = message => console.log(JSON.parse(message.data));
   }
 
   handleData(data) {
-    console.log(data)
+    console.log(data);
     let users = JSON.parse(data);
-    this.setState({users: users});
+    this.setState({ users: users });
   }
 
   render() {
@@ -31,14 +31,12 @@ class ChatWindow extends Component {
             <input type="text" />
           </div>
           <div className="container-window">
-            <div className="users-window">
-            </div>
-            <div className="chat-window">
-            </div>
+            <div className="users-window" />
+            <div className="chat-window" />
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
