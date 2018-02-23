@@ -1,0 +1,33 @@
+.page-container {
+  min-height: 600px;
+  width: 75%;
+  margin: auto;
+
+}
+.container-window {
+  display: flex;
+  min-height: 600px;
+  border: solid 1px black;
+}
+
+.users-window {
+  width: 25%;
+  min-height: 600px;
+  border: solid 1px black;
+}
+
+.chat-window {
+  width: 75%;
+  min-height: 600px;
+  border: solid 1px black;
+}
+
+.user-data-box {
+  display: flex;
+  height: 1em;
+  margin-bottom: 1em;
+}
+
+.name-label {
+  margin: 0 1em 0 0;
+}
