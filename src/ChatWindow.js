@@ -1,18 +1,30 @@
 import React, { Component } from 'react';
+import uuid from 'js-uuid';
 import './ChatWindow.css';
 
 class ChatWindow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      me: 'panos',
+      id: '',
+      name: '',
       users: []
     };
   }
 
   componentDidMount() {
-    const socket = new WebSocket(`ws://${window.location.hostname}:8080/users`);
-    socket.onopen = () => console.log('connected');
+    const localStore = window.localStorage;
+    var user = JSON.parse(localStore.getItem('user'));
+    if (!user) {
+      user = { id: uuid.v4(), name: '' };
+      localStore.setItem('user', JSON.stringify(user));
+    }
+    const userMsg = { type: 'newUser', user: { id: user.id, name: user.name } };
+    const userMsgStr = JSON.stringify(userMsg);
+    const socket = new WebSocket(`ws://${window.location.hostname}:8080`);
+    socket.onopen = () => {
+      socket.send(userMsgStr);
+    };
     socket.onmessage = message => console.log(JSON.parse(message.data));
   }
 
