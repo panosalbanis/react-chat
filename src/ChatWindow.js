@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import "./ChatWindow.css";
+import React, { Component } from 'react';
+import './ChatWindow.css';
 
 class ChatWindow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      me: "panos",
+      me: 'panos',
       users: []
     };
   }
 
   componentDidMount() {
     const socket = new WebSocket(`ws://${window.location.hostname}:8080/users`);
-    socket.onopen = () => console.log("connected");
+    socket.onopen = () => console.log('connected');
     socket.onmessage = message => console.log(JSON.parse(message.data));
   }
 

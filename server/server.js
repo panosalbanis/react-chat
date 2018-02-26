@@ -6,16 +6,16 @@ const uuidv4 = require('uuid/v4');
 const users = [];
 
 const addUser = function() {
-  users.push({id: uuidv4(), name: 'anonymous'});
-}
+  users.push({ id: uuidv4(), name: 'anonymous' });
+};
 
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   console.log('middleware');
   req.testing = 'testing';
   return next();
 });
 
-app.get('/', function(req, res, next){
+app.get('/', function(req, res, next) {
   console.log('get route', req.testing);
   res.end();
 });

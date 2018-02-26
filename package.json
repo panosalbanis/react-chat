@@ -50,7 +50,9 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "prettier": "prettier --write './src/**/*.{ts,js,css,json}'"
+    "prettier": "npm run prettier-react && npm run prettier-server",
+    "prettier-react": "prettier --write --single-quote './src/**/*.{ts,js,css,json}'",
+    "prettier-server": "prettier --write --single-quote './server/**/*.{ts,js,css,json}'"
   },
   "jest": {
     "collectCoverageFrom": [
