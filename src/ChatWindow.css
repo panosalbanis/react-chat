@@ -9,12 +9,6 @@
   border: solid 1px black;
 }
 
-.users-window {
-  width: 25%;
-  min-height: 600px;
-  border: solid 1px black;
-}
-
 .chat-window {
   width: 75%;
   min-height: 600px;
