@@ -1,35 +1,7 @@
 const express = require('express');
 const app = express();
 const expressWs = require('express-ws')(app);
-
-const users = [];
-
-const sendUpdatedUserList = function(ws) {
-  ws.send(JSON.stringify({type: 'users', users: users}));
-};
-
-const broadcast = function(msg) {
-  users.map(u => u.ws.send(msg))
-}
-
-const addUser = function(user, ws) {
-  if (!users.find(u => u.id === user.id)) {
-    users.push({ id: user.id, name: user.name, connection: ws });
-  }
-};
-
-const removeUser = function(id) {
-  if (!users.find(u => u.id === id)) {
-    users.reduce((acc, cur) => cur.id === id ? acc : acc.push(cur), [])
-  }
-};
-
-const updateUserName = function(user) {
-  const oldUser = users.find(u => u.id === user.id)
-  if (oldUser) {
-    oldUser.name = user.name;
-  }
-};
+const chat = require('./lib/chat');
 
 app.ws('/', function(ws, req) {
 
@@ -46,6 +18,10 @@ app.ws('/', function(ws, req) {
         updateUserName(msgObject.user);
         sendUpdatedUserList(ws);
         break;
+      case 'chatMsg':
+        break;
+      default:
+        console.log('Unknown message');
     }
   });
 
