@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 const expressWs = require('express-ws')(app);
-const chat = require('./lib/chat');
+const Chat = require('./lib/chat');
+
+const chat = Chat.createChat();
 
 app.ws('/', function(ws, req) {
 
