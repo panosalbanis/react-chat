@@ -2,7 +2,7 @@ const assert = require('assert');
 const Chat = require('./chat.js');
 
 describe('Chat', function() {
-  describe('AddUser', function() {
+  describe('addUser', function() {
     it('should add a new user', function() {
       const chat = Chat.createChat();
       chat.addUser({id: 'id', name: 'test-user', connectin : null});
@@ -34,6 +34,17 @@ describe('Chat', function() {
       chat.removeUser('id');
       const users = chat.users;
       assert.equal(users.length, 0);
+    });
+  });
+  describe('findUser', function() {
+    it('should find a user if they exist', function() {
+      const chat = Chat.createChat();
+      chat.addUser({id: 'id', name: 'test-user', connectin : null});
+      assert.equal(chat.findUser('id').id, 'id');
+    });
+    it('should not fail if a user does not exist', function() {
+      const chat = Chat.createChat();
+      assert.equal(chat.findUser('test-user'), undefined)
     });
   });
 });

@@ -1,5 +1,3 @@
-'use strict';
-
 class Chat {
 
   constructor() {
@@ -11,7 +9,7 @@ class Chat {
   }
 
   sendUpdatedUserList(ws) {
-    this.broadcast(JSON.stringify({type: 'users', users: users}));
+    this.broadcast(JSON.stringify({type: 'users', users: this._users}));
   }
 
   sendChatMsg(msg) {
